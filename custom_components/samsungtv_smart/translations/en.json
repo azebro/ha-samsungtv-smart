@@ -79,7 +79,8 @@
           "init": "Standard options",
           "save_exit": "Save options and exit",
           "source_list": "Sources list configuration",
-          "sync_ent": "Synched entities configuration"
+          "sync_ent": "Synched entities configuration",
+          "presence_art": "Presence & Art Mode"
         }
       },
       "adv_opt": {
@@ -119,10 +120,24 @@
         "data": {
           "source_list": "Sources list:"
         }
+      },
+      "presence_art": {
+        "title": "Presence & Art Mode",
+        "description": "Configure presence detection and illuminance-based art brightness.",
+        "data": {
+          "presence_sensor": "Presence Sensor",
+          "no_presence_off_delay": "No-Presence Off Delay (minutes)",
+          "illuminance_sensor": "Illuminance Sensor",
+          "brightness_min_lux": "Min Lux Threshold",
+          "brightness_max_lux": "Max Lux Threshold",
+          "brightness_min": "Min Art Brightness (%)",
+          "brightness_max": "Max Art Brightness (%)"
+        }
       }
     },
     "error": {
-      "invalid_tv_list": "Invalid format. Please check documentation"
+      "invalid_tv_list": "Invalid format. Please check documentation",
+      "min_gte_max": "Minimum value must be less than maximum value."
     }
   }
 }
