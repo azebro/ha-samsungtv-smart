@@ -49,6 +49,33 @@
 			"panel": "new"
 		  },
 		  "problemMatcher": []
+		},
+		{
+		  "label": "Run New Feature Tests",
+		  "detail": "Run tests for presence, brightness, and switch guard features.",
+		  "type": "shell",
+		  "command": "pytest tests/test_brightness_mapping.py tests/test_number.py tests/test_switch_guards.py tests/test_binary_sensor.py -v -o 'addopts=' --no-cov",
+		  "group": {
+			"kind": "test",
+			"isDefault": false
+		  },
+		  "presentation": {
+			"reveal": "always",
+			"panel": "new"
+		  },
+		  "problemMatcher": []
+		},
+		{
+		  "label": "Run Current Test File",
+		  "detail": "Run pytest on the currently open test file.",
+		  "type": "shell",
+		  "command": "pytest ${file} -v -o 'addopts=' --no-cov -x",
+		  "group": "test",
+		  "presentation": {
+			"reveal": "always",
+			"panel": "new"
+		  },
+		  "problemMatcher": []
 		}
     ]
 }

@@ -117,6 +117,7 @@
           "app_list": "Configure Applications",
           "channel_list": "Configure Channels",
           "sync_ent": "Synchronized Entities",
+          "presence_art": "Presence & Art Mode",
           "init": "Basic Options",
           "adv_opt": "Advanced Options",
           "save_exit": "Save and Exit"
@@ -151,6 +152,19 @@
           "sync_turn_on": "Turn on with TV"
         }
       },
+      "presence_art": {
+        "title": "Presence & Art Mode",
+        "description": "Configure presence detection and illuminance-based art brightness.",
+        "data": {
+          "presence_sensor": "Presence Sensor",
+          "no_presence_off_delay": "No-Presence Off Delay (minutes)",
+          "illuminance_sensor": "Illuminance Sensor",
+          "brightness_min_lux": "Min Lux Threshold",
+          "brightness_max_lux": "Max Lux Threshold",
+          "brightness_min": "Min Art Brightness (%)",
+          "brightness_max": "Max Art Brightness (%)"
+        }
+      },
       "adv_opt": {
         "title": "Advanced Options",
         "data": {
@@ -168,7 +182,8 @@
       }
     },
     "error": {
-      "invalid_tv_list": "Invalid list format. Please use valid JSON format."
+      "invalid_tv_list": "Invalid list format. Please use valid JSON format.",
+      "min_gte_max": "Minimum value must be less than maximum value."
     }
   },
   "application_credentials": {

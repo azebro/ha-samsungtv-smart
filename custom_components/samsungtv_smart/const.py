@@ -28,8 +28,8 @@ class PowerOnMethod(Enum):
 
 DOMAIN = "samsungtv_smart"
 
-MIN_HA_MAJ_VER = 2025
-MIN_HA_MIN_VER = 6
+MIN_HA_MAJ_VER = 2026
+MIN_HA_MIN_VER = 2
 __min_ha_version__ = f"{MIN_HA_MAJ_VER}.{MIN_HA_MIN_VER}.0"
 
 DATA_CFG = "cfg"
@@ -68,6 +68,15 @@ CONF_USE_ST_CHANNEL_INFO = "use_st_channel_info"
 CONF_USE_ST_STATUS_INFO = "use_st_status_info"
 CONF_WOL_REPEAT = "wol_repeat"
 CONF_WS_NAME = "ws_name"
+
+# Presence and illuminance automation
+CONF_PRESENCE_SENSOR = "presence_sensor"
+CONF_NO_PRESENCE_OFF_DELAY = "no_presence_off_delay"
+CONF_ILLUMINANCE_SENSOR = "illuminance_sensor"
+CONF_BRIGHTNESS_MIN_LUX = "brightness_min_lux"
+CONF_BRIGHTNESS_MAX_LUX = "brightness_max_lux"
+CONF_BRIGHTNESS_MIN = "brightness_min"
+CONF_BRIGHTNESS_MAX = "brightness_max"
 
 # for SmartThings integration api key usage
 CONF_ST_ENTRY_UNIQUE_ID = "st_entry_unique_id"
