@@ -1,21 +1,47 @@
 # Samsung TV Smart - Frame Art Edition
 
-[![HACS Default](https://img.shields.io/badge/HACS-Default-blue.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/release/eflye/ha-samsungtv-smart.svg)](https://github.com/eflye/ha-samsungtv-smart/releases)
-[![Validate with HACS](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/validate.yaml/badge.svg)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/validate.yaml)
-[![Validate with Hassfest](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/hassfest.yaml/badge.svg)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/hassfest.yaml)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/v/release/eflye/ha-samsungtv-smart?style=for-the-badge)](https://github.com/eflye/ha-samsungtv-smart/releases)
+[![Validate with HACS](https://img.shields.io/github/actions/workflow/status/eflye/ha-samsungtv-smart/validate.yaml?style=for-the-badge&label=HACS%20Validation&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptLTIgMTVsLTUtNSAxLjQxLTEuNDFMMTAgMTQuMTdsNy41OS03LjU5TDE5IDhsLTkgOXoiLz48L3N2Zz4=)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/validate.yaml)
+[![Validate with Hassfest](https://img.shields.io/github/actions/workflow/status/eflye/ha-samsungtv-smart/hassfest.yaml?style=for-the-badge&label=Hassfest&logo=home-assistant)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/hassfest.yaml)
+[![Linting](https://img.shields.io/github/actions/workflow/status/eflye/ha-samsungtv-smart/linting.yaml?style=for-the-badge&label=Linting)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/linting.yaml)
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=eflye&repository=ha-samsungtv-smart&category=integration)
 
-📺 Home Assistant integration for Samsung Smart TVs with **enhanced Frame TV Art Mode support** and **OAuth2 authentication**.
+📺 Home Assistant integration for Samsung Smart TVs with **enhanced Frame TV Art Mode support**, **presence-aware automation entities**, and **OAuth2 authentication**.
 
 This is a fork of [ollo69/ha-samsungtv-smart](https://github.com/ollo69/ha-samsungtv-smart) with significant improvements for Samsung Frame TV users.
 
 ---
 
-## ✨ What's New in This Fork
+## ✨ What's New in v7.0.0
 
-### 🔐 OAuth2 Authentication (No More PAT Expiration!)
+### 🏠 Presence-Aware Art Mode (NEW)
+
+Automatically control Art Mode based on room occupancy:
+
+- **Presence-Aware Binary Sensor** - `binary_sensor.<tv_name>_presence_aware` tracks whether the TV should show art based on a configured presence sensor
+- **Configurable Off Delay** - Set a timeout (0-120 minutes) before the sensor turns off after presence is lost
+- **Playback Guard** - Art Mode switch prevents activation while the TV is actively playing or paused, protecting your viewing experience
+- **Guard Events** - `samsungtv_smart_art_mode_blocked` event fires when Art Mode activation is blocked, enabling notification automations
+
+### 💡 Illuminance-Based Art Brightness (NEW)
+
+Automatically adjust art brightness to match ambient light:
+
+- **Art Brightness Number Entity** - `number.<tv_name>_art_brightness` for manual brightness control (0-100%)
+- **Recommended Brightness Sensor** - `sensor.<tv_name>_recommended_art_brightness` computes optimal brightness from a lux sensor using a logarithmic curve
+- **Configurable Thresholds** - Set min/max lux and brightness values in the integration options
+- **30-Second Debounce** - Prevents flooding the TV with rapid brightness changes when lux fluctuates
+
+### 🔄 HA 2026.3 Modernization (NEW)
+
+- **`asyncio.timeout`** - Replaced deprecated `async_timeout` with stdlib `asyncio.timeout`
+- **`entry.runtime_data`** - Migrated from `hass.data[DOMAIN]` dict to typed `runtime_data` dataclass
+- **Centralized Art API** - Single `art_api` instance created in `__init__.py`, eliminating race conditions across platforms
+- **Minimum HA version bumped to 2026.3**
+
+### 🔐 OAuth2 Authentication
 
 The original integration uses Personal Access Tokens (PAT) that expire after a few months, requiring manual renewal. This fork implements **full OAuth2 authentication** with:
 
@@ -28,7 +54,7 @@ The original integration uses Personal Access Tokens (PAT) that expire after a f
 
 Complete control over your Samsung Frame TV's Art Mode:
 
-- **Art Mode Switch** - Dedicated switch entity with retry logic
+- **Art Mode Switch** - Dedicated switch entity with retry logic and playback guard
 - **Frame Art Sensor** - Real-time artwork tracking with thumbnail support
 - **Slideshow Automation** - Configure automatic artwork rotation
 - **Matte Control** - Change frame styles and colors
@@ -48,8 +74,8 @@ Complete control over your Samsung Frame TV's Art Mode:
 ## 📋 Requirements
 
 - Samsung Smart TV (2016+ models)
-- Samsung Frame TV (for Art Mode features)
-- Home Assistant 2025.6.0 or newer
+- Samsung Frame TV (for Art Mode and brightness features)
+- Home Assistant 2026.3 or newer
 - SmartThings account linked to your TV
 - **For OAuth2**: SmartThings Developer Account (free)
 
@@ -150,10 +176,13 @@ application_credentials:
 | Entity | Type | Description |
 |--------|------|-------------|
 | `media_player.samsung_*` | Media Player | Main TV control with art mode attributes |
-| `switch.samsung_*_frame_art_mode` | Switch | Toggle Art Mode on/off |
+| `switch.samsung_*_frame_art_mode` | Switch | Toggle Art Mode on/off (with playback guard) |
 | `sensor.samsung_*_frame_art` | Sensor | Current artwork info and thumbnail |
 | `sensor.samsung_*_illuminance` | Sensor | Ambient light level |
 | `sensor.samsung_*_brightness_intensity` | Sensor | Art Mode brightness |
+| `sensor.samsung_*_recommended_art_brightness` | Sensor | Computed brightness from lux (requires illuminance sensor config) |
+| `number.samsung_*_art_brightness` | Number | Art brightness control 0-100% (requires illuminance sensor config + Frame TV) |
+| `binary_sensor.samsung_*_presence_aware` | Binary Sensor | Presence-aware state with configurable off delay (requires presence sensor config) |
 
 ### Available Services
 
@@ -306,6 +335,60 @@ Access thumbnails via:
 ---
 
 ## 🤖 Automation Examples
+
+### Presence-Based Art Mode
+
+```yaml
+alias: "Frame Art: Art Mode on Presence"
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.living_room_tv_presence_aware
+    to: "on"
+actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.samsung_frame_frame_art_mode
+mode: single
+```
+
+### Auto-Off When No Presence
+
+```yaml
+alias: "Frame Art: TV Off When Empty"
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.living_room_tv_presence_aware
+    to: "off"
+conditions:
+  - condition: state
+    entity_id: switch.samsung_frame_frame_art_mode
+    state: "on"
+actions:
+  - action: media_player.turn_off
+    target:
+      entity_id: media_player.samsung_frame
+mode: single
+```
+
+### Auto Art Brightness from Ambient Light
+
+```yaml
+alias: "Frame Art: Auto Brightness"
+triggers:
+  - trigger: state
+    entity_id: sensor.samsung_frame_recommended_art_brightness
+conditions:
+  - condition: state
+    entity_id: switch.samsung_frame_frame_art_mode
+    state: "on"
+actions:
+  - action: number.set_value
+    target:
+      entity_id: number.samsung_frame_art_brightness
+    data:
+      value: "{{ trigger.to_state.state }}"
+mode: single
+```
 
 ### Weekend Art Slideshow
 
@@ -545,6 +628,28 @@ logger:
 ---
 
 ## 📝 Changelog
+
+### v7.0.0 (Presence & Brightness Edition)
+
+#### Presence-Aware Art Mode
+- ✨ New `binary_sensor.<tv_name>_presence_aware` entity with configurable off delay
+- ✨ Playback guard on Art Mode switch prevents interrupting active viewing
+- ✨ `samsungtv_smart_art_mode_blocked` event for guard notifications
+- ✨ Options flow step for presence & illuminance sensor configuration
+
+#### Illuminance-Based Art Brightness
+- ✨ New `number.<tv_name>_art_brightness` entity (0-100%)
+- ✨ New `sensor.<tv_name>_recommended_art_brightness` with logarithmic lux mapping
+- ✨ Configurable min/max lux thresholds and brightness range
+- ✨ 30-second debounce prevents rapid brightness changes
+
+#### HA 2026.3 Modernization
+- 🔧 Replaced `async_timeout` with `asyncio.timeout` (stdlib)
+- 🔧 Migrated to `entry.runtime_data` dataclass pattern
+- 🔧 Centralized `art_api` creation in `__init__.py` (eliminates race conditions)
+- 🔧 Fixed `get_brightness()` dict return type parsing
+- 🔧 Fixed duplicate brightness conversion formula
+- 🔧 Bumped minimum HA version to 2026.3
 
 ### v0.9.0 (Frame Art Edition)
 
