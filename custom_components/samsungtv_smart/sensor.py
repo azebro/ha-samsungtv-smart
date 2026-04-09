@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import asyncio
+from datetime import timedelta
 from functools import partial
 import logging
 import math
 import time
-from datetime import timedelta
 from typing import Any
+
+from pysmartthings import Attribute, Capability
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -25,25 +27,22 @@ from homeassistant.helpers.event import async_call_later, async_track_state_chan
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
-    UpdateFailed,
 )
 
-from pysmartthings import Attribute, Capability
-
+from . import async_get_samsungtv_api_key
 from .api.art import SamsungTVAsyncArt
 from .const import (
     AUTH_METHOD_OAUTH,
-    AUTH_METHOD_ST_ENTRY,
     CONF_API_KEY,
     CONF_AUTH_METHOD,
-    CONF_DEVICE_ID,
-    CONF_OAUTH_TOKEN,
-    CONF_WS_NAME,
-    CONF_ILLUMINANCE_SENSOR,
-    CONF_BRIGHTNESS_MIN_LUX,
+    CONF_BRIGHTNESS_MAX,
     CONF_BRIGHTNESS_MAX_LUX,
     CONF_BRIGHTNESS_MIN,
-    CONF_BRIGHTNESS_MAX,
+    CONF_BRIGHTNESS_MIN_LUX,
+    CONF_DEVICE_ID,
+    CONF_ILLUMINANCE_SENSOR,
+    CONF_OAUTH_TOKEN,
+    CONF_WS_NAME,
     DATA_ART_API,
     DATA_CFG,
     DATA_OPTIONS,
@@ -52,7 +51,6 @@ from .const import (
     WS_PREFIX,
 )
 from .entity import SamsungTVEntity
-from . import async_get_samsungtv_api_key
 
 _LOGGER = logging.getLogger(__name__)
 

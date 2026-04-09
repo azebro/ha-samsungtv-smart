@@ -1,12 +1,12 @@
 # Samsung TV Smart - Frame Art Edition
 
 [![HACS Default](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/eflye/ha-samsungtv-smart?style=for-the-badge)](https://github.com/eflye/ha-samsungtv-smart/releases)
-[![Validate with HACS](https://img.shields.io/github/actions/workflow/status/eflye/ha-samsungtv-smart/validate.yaml?style=for-the-badge&label=HACS%20Validation&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptLTIgMTVsLTUtNSAxLjQxLTEuNDFMMTAgMTQuMTdsNy41OS03LjU5TDE5IDhsLTkgOXoiLz48L3N2Zz4=)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/validate.yaml)
-[![Validate with Hassfest](https://img.shields.io/github/actions/workflow/status/eflye/ha-samsungtv-smart/hassfest.yaml?style=for-the-badge&label=Hassfest&logo=home-assistant)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/hassfest.yaml)
-[![Linting](https://img.shields.io/github/actions/workflow/status/eflye/ha-samsungtv-smart/linting.yaml?style=for-the-badge&label=Linting)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/linting.yaml)
+[![GitHub Release](https://img.shields.io/github/v/release/azebro/ha-samsungtv-smart?style=for-the-badge)](https://github.com/azebro/ha-samsungtv-smart/releases)
+[![Validate with HACS](https://img.shields.io/github/actions/workflow/status/azebro/ha-samsungtv-smart/validate.yaml?style=for-the-badge&label=HACS%20Validation&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptLTIgMTVsLTUtNSAxLjQxLTEuNDFMMTAgMTQuMTdsNy41OS03LjU5TDE5IDhsLTkgOXoiLz48L3N2Zz4=)](https://github.com/azebro/ha-samsungtv-smart/actions/workflows/validate.yaml)
+[![Validate with Hassfest](https://img.shields.io/github/actions/workflow/status/azebro/ha-samsungtv-smart/hassfest.yaml?style=for-the-badge&label=Hassfest&logo=home-assistant)](https://github.com/azebro/ha-samsungtv-smart/actions/workflows/hassfest.yaml)
+[![Linting](https://img.shields.io/github/actions/workflow/status/azebro/ha-samsungtv-smart/linting.yaml?style=for-the-badge&label=Linting)](https://github.com/azebro/ha-samsungtv-smart/actions/workflows/linting.yaml)
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=eflye&repository=ha-samsungtv-smart&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=azebro&repository=ha-samsungtv-smart&category=integration)
 
 📺 Home Assistant integration for Samsung Smart TVs with **enhanced Frame TV Art Mode support**, **presence-aware automation entities**, and **OAuth2 authentication**.
 
@@ -85,7 +85,7 @@ Complete control over your Samsung Frame TV's Art Mode:
 
 ### HACS (Recommended)
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=eflye&repository=ha-samsungtv-smart&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=azebro&repository=ha-samsungtv-smart&category=integration)
 
 1. Open HACS in Home Assistant
 2. Go to **Integrations**
@@ -97,7 +97,7 @@ Complete control over your Samsung Frame TV's Art Mode:
 If the integration is not yet in the HACS default list:
 
 1. Open HACS → **Integrations** → three dots menu → **Custom repositories**
-2. Add: `https://github.com/eflye/ha-samsungtv-smart`
+2. Add: `https://github.com/azebro/ha-samsungtv-smart`
 3. Category: **Integration**
 4. Click **Add**, then search and install
 5. Restart Home Assistant

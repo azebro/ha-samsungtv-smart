@@ -6,24 +6,22 @@ for SmartThings API authentication.
 
 from __future__ import annotations
 
-import logging
 from datetime import datetime, timedelta
-from typing import Any
+import logging
 
-from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import (
+    AUTH_METHOD_OAUTH,
+    AUTH_METHOD_PAT,
+    AUTH_METHOD_ST_ENTRY,
     CONF_API_KEY,
     CONF_AUTH_METHOD,
     CONF_OAUTH_TOKEN,
     CONF_ST_ENTRY_UNIQUE_ID,
-    AUTH_METHOD_OAUTH,
-    AUTH_METHOD_PAT,
-    AUTH_METHOD_ST_ENTRY,
-    DOMAIN,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -81,8 +79,10 @@ class OAuth2TokenManager:
 
         try:
             # Get the OAuth implementation
-            implementation = await config_entry_oauth2_flow.async_get_config_entry_implementation(
-                self.hass, self.entry
+            implementation = (
+                await config_entry_oauth2_flow.async_get_config_entry_implementation(
+                    self.hass, self.entry
+                )
             )
 
             if not implementation:
@@ -115,14 +115,14 @@ class OAuth2TokenManager:
 
 async def async_get_api_key(hass: HomeAssistant, entry: ConfigEntry) -> str | None:
     """Get the API key/access token based on authentication method.
-    
+
     This function abstracts the different auth methods and returns
     a valid access token for SmartThings API calls.
-    
+
     Args:
         hass: Home Assistant instance
         entry: Config entry for the integration
-        
+
     Returns:
         Access token string if available, None otherwise
     """
@@ -156,11 +156,11 @@ async def async_get_api_key(hass: HomeAssistant, entry: ConfigEntry) -> str | No
 
 async def async_validate_token(hass: HomeAssistant, token: str) -> bool:
     """Validate a SmartThings API token.
-    
+
     Args:
         hass: Home Assistant instance
         token: The access token to validate
-        
+
     Returns:
         True if token is valid, False otherwise
     """

@@ -6,8 +6,6 @@ The function is duplicated here to avoid import issues with HA-dependent modules
 
 import math
 
-import pytest
-
 
 def lux_to_brightness(
     lux: float,
@@ -114,76 +112,3 @@ class TestBrightnessScaleConversion:
         for ui in range(0, 101):
             tv = self.ui_to_tv(ui)
             assert 1 <= tv <= 10, f"UI={ui} mapped to TV={tv} out of range"
-
-
-"""Tests for lux_to_brightness mapping function."""
-
-import pytest
-
-from custom_components.samsungtv_smart.sensor import lux_to_brightness
-
-
-class TestLuxToBrightness:
-    """Test the logarithmic lux-to-brightness mapping function."""
-
-    def test_zero_lux_returns_min(self):
-        """Lux=0 should return min_brightness."""
-        assert lux_to_brightness(0) == 5
-
-    def test_min_lux_returns_min(self):
-        """Lux at min_lux should return min_brightness."""
-        assert lux_to_brightness(1.0) == 5
-
-    def test_below_min_lux_returns_min(self):
-        """Lux below min_lux should return min_brightness."""
-        assert lux_to_brightness(0.5) == 5
-
-    def test_max_lux_returns_max(self):
-        """Lux at max_lux should return max_brightness."""
-        assert lux_to_brightness(1000.0) == 100
-
-    def test_above_max_lux_returns_max(self):
-        """Lux above max_lux should clamp to max_brightness."""
-        assert lux_to_brightness(5000.0) == 100
-
-    def test_10_lux_mid_low(self):
-        """10 lux with defaults should be roughly 1/3 of range."""
-        result = lux_to_brightness(10.0)
-        assert 30 <= result <= 45
-
-    def test_100_lux_mid_high(self):
-        """100 lux with defaults should be roughly 2/3 of range."""
-        result = lux_to_brightness(100.0)
-        assert 60 <= result <= 75
-
-    def test_negative_lux(self):
-        """Negative lux should return min_brightness."""
-        assert lux_to_brightness(-5) == 5
-
-    def test_custom_thresholds(self):
-        """Custom min/max thresholds should work correctly."""
-        result = lux_to_brightness(
-            50, min_lux=10, max_lux=100, min_brightness=20, max_brightness=80
-        )
-        assert 20 <= result <= 80
-
-    def test_custom_min_max_brightness(self):
-        """Custom brightness range should be respected."""
-        assert lux_to_brightness(0, min_brightness=10, max_brightness=50) == 10
-        assert lux_to_brightness(2000, min_brightness=10, max_brightness=50) == 50
-
-    def test_result_is_integer(self):
-        """Result should always be an integer."""
-        for lux in [0, 0.5, 1, 5, 10, 50, 100, 500, 1000, 5000]:
-            result = lux_to_brightness(lux)
-            assert isinstance(result, int)
-
-    def test_monotonically_increasing(self):
-        """Brightness should increase monotonically with lux."""
-        prev = 0
-        for lux in [0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]:
-            result = lux_to_brightness(lux)
-            assert (
-                result >= prev
-            ), f"Brightness decreased at lux={lux}: {result} < {prev}"
-            prev = result

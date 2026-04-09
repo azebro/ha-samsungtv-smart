@@ -7,29 +7,21 @@ import logging
 import time
 from typing import Any
 
-from homeassistant.components.switch import SwitchEntity, SwitchDeviceClass
+from pysmartthings import Capability, Command
+
+from homeassistant.components.switch import SwitchDeviceClass, SwitchEntity
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import (
-    CONF_HOST,
-    CONF_MAC,
-    CONF_NAME,
-    CONF_PORT,
-    CONF_TOKEN,
-    STATE_ON,
-    STATE_OFF,
-)
-from homeassistant.core import HomeAssistant, callback
+from homeassistant.const import CONF_HOST, CONF_NAME, CONF_PORT, CONF_TOKEN, STATE_OFF
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers import entity_registry as er
 
-from pysmartthings import Attribute, Capability, Command
-
+from . import async_get_samsungtv_api_key
 from .api.art import SamsungTVAsyncArt
 from .const import (
     AUTH_METHOD_OAUTH,
-    AUTH_METHOD_ST_ENTRY,
     CONF_API_KEY,
     CONF_AUTH_METHOD,
     CONF_DEVICE_ID,
@@ -41,7 +33,6 @@ from .const import (
     DOMAIN,
     WS_PREFIX,
 )
-from . import async_get_samsungtv_api_key
 
 # SmartThings component
 COMPONENT_MAIN = "main"

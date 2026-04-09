@@ -50,9 +50,9 @@ from homeassistant.const import (
 from homeassistant.core import DOMAIN as HA_DOMAIN, HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import (
+    config_entry_oauth2_flow,
     config_validation as cv,
     entity_platform,
-    config_entry_oauth2_flow,
 )
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -62,17 +62,16 @@ from homeassistant.util import Throttle, dt as dt_util
 from homeassistant.util.async_ import run_callback_threadsafe
 
 from . import (
-    get_smartthings_api_key,
-    async_get_samsungtv_api_key,
     get_oauth_refresh_lock,
+    get_smartthings_api_key,
     is_oauth_refresh_in_progress,
     set_oauth_refresh_in_progress,
 )
+from .api.art import SamsungTVAsyncArt
 from .api.samsungcast import SamsungCastTube
 from .api.samsungws import ArtModeStatus, SamsungTVAsyncRest, SamsungTVWS
 from .api.smartthings import SmartThingsTV, STStatus
 from .api.upnp import SamsungUPnP
-from .api.art import SamsungTVAsyncArt
 from .const import (
     ATTR_BRIGHTNESS,
     ATTR_CATEGORY_ID,
@@ -87,7 +86,6 @@ from .const import (
     ATTR_SHUFFLE,
     ATTR_STATUS,
     AUTH_METHOD_OAUTH,
-    AUTH_METHOD_PAT,
     AUTH_METHOD_ST_ENTRY,
     CONF_APP_LAUNCH_METHOD,
     CONF_APP_LIST,

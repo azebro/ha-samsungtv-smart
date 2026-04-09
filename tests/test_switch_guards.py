@@ -3,8 +3,6 @@
 Tests the _is_tv_playing_content logic in isolation.
 """
 
-import pytest
-
 
 class TestPlaybackGuard:
     """Tests for active playback states detection."""

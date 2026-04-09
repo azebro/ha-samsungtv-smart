@@ -35,8 +35,8 @@ from homeassistant.const import (
     __version__,
 )
 from homeassistant.core import HomeAssistant, callback
-import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers import config_entry_oauth2_flow
+import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.storage import STORAGE_DIR
 from homeassistant.helpers.typing import ConfigType
@@ -49,12 +49,16 @@ from .const import (
     ATTR_DEVICE_MODEL,
     ATTR_DEVICE_NAME,
     ATTR_DEVICE_OS,
+    AUTH_METHOD_OAUTH,
+    AUTH_METHOD_ST_ENTRY,
     CONF_APP_LIST,
     CONF_AUTH_METHOD,
     CONF_CHANNEL_LIST,
     CONF_DEVICE_NAME,
+    CONF_ILLUMINANCE_SENSOR,
     CONF_LOAD_ALL_APPS,
     CONF_OAUTH_TOKEN,
+    CONF_PRESENCE_SENSOR,
     CONF_SCAN_APP_HTTP,
     CONF_SHOW_CHANNEL_NR,
     CONF_SOURCE_LIST,
@@ -65,11 +69,9 @@ from .const import (
     CONF_UPDATE_METHOD,
     CONF_USE_ST_INT_API_KEY,
     CONF_WS_NAME,
-    CONF_PRESENCE_SENSOR,
-    CONF_ILLUMINANCE_SENSOR,
+    DATA_ART_API,
     DATA_CFG,
     DATA_CFG_YAML,
-    DATA_ART_API,
     DATA_OPTIONS,
     DEFAULT_PORT,
     DEFAULT_SOURCE_LIST,
@@ -84,9 +86,6 @@ from .const import (
     RESULT_WRONG_APIKEY,
     SIGNAL_CONFIG_ENTITY,
     WS_PREFIX,
-    AUTH_METHOD_OAUTH,
-    AUTH_METHOD_PAT,
-    AUTH_METHOD_ST_ENTRY,
     __min_ha_version__,
 )
 from .logo import CUSTOM_IMAGE_BASE_URL, STATIC_IMAGE_BASE_URL

@@ -36,7 +36,7 @@ def auto_enable_custom_integrations(request):
         yield
         return
     try:
-        from pytest_homeassistant_custom_component.plugins import (
+        from pytest_homeassistant_custom_component.plugins import (  # noqa: F401
             enable_custom_integrations as _enable,
         )
     except ImportError:

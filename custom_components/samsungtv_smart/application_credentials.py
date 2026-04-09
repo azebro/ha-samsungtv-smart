@@ -42,7 +42,7 @@ async def async_get_auth_implementation(
 
 class SmartThingsOAuth2Implementation(AuthImplementation):
     """OAuth2 implementation for SmartThings.
-    
+
     SmartThings requires HTTP Basic Auth for the token endpoint,
     not the standard POST body credentials.
     """
@@ -70,9 +70,9 @@ class SmartThingsOAuth2Implementation(AuthImplementation):
                 error_description,
             )
         resp.raise_for_status()
-        
+
         token = cast(dict, await resp.json())
-        
+
         # Always recalculate expires_at from expires_in to ensure correctness
         # SmartThings may return an incorrect expires_at or none at all
         if "expires_in" in token:
@@ -83,5 +83,5 @@ class SmartThingsOAuth2Implementation(AuthImplementation):
                 token["expires_in"] / 3600,
                 token["expires_at"],
             )
-        
+
         return token

@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import asyncio
-import logging
 from datetime import timedelta
+import logging
 from typing import Any
 
 from homeassistant.components.number import NumberEntity
@@ -13,13 +13,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .api.art import SamsungTVAsyncArt
-from .const import (
-    CONF_ILLUMINANCE_SENSOR,
-    DATA_ART_API,
-    DATA_CFG,
-    DATA_OPTIONS,
-    DOMAIN,
-)
+from .const import CONF_ILLUMINANCE_SENSOR, DATA_ART_API, DATA_CFG, DATA_OPTIONS, DOMAIN
 from .entity import SamsungTVEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -42,9 +36,10 @@ async def async_setup_entry(
     # Only create brightness entity if illuminance sensor configured AND Frame TV
     illuminance_sensor = options.get(CONF_ILLUMINANCE_SENSOR)
     if illuminance_sensor and frame_tv_supported:
-        from homeassistant.helpers.aiohttp_client import async_get_clientsession
         from homeassistant.const import CONF_HOST, CONF_PORT, CONF_TOKEN
-        from .const import DEFAULT_PORT, WS_PREFIX, CONF_WS_NAME
+        from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
+        from .const import CONF_WS_NAME, DEFAULT_PORT, WS_PREFIX
 
         host = config[CONF_HOST]
         port = config.get(CONF_PORT, DEFAULT_PORT)

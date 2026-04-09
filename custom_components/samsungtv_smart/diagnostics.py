@@ -8,7 +8,7 @@ from homeassistant.const import CONF_API_KEY, CONF_ID, CONF_MAC, CONF_TOKEN
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 
-from .const import DOMAIN, CONF_OAUTH_TOKEN
+from .const import CONF_OAUTH_TOKEN, DOMAIN
 
 TO_REDACT = {CONF_API_KEY, CONF_MAC, CONF_TOKEN, CONF_OAUTH_TOKEN}
 
