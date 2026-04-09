@@ -40,6 +40,17 @@ async def async_get_auth_implementation(
     )
 
 
+async def async_get_description_placeholders(hass: HomeAssistant) -> dict[str, str]:
+    """Return description placeholders for application credentials."""
+    return {
+        "developer_portal_url": "https://developer.smartthings.com/",
+        "oauth_docs_url": (
+            "https://developer.smartthings.com/docs/"
+            "connected-services/oauth-integrations"
+        ),
+    }
+
+
 class SmartThingsOAuth2Implementation(AuthImplementation):
     """OAuth2 implementation for SmartThings.
 
