@@ -1,7 +1,11 @@
 # Samsung TV Smart - Frame Art Edition
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/release/TheFab21/ha-samsungtv-smart.svg)](https://github.com/TheFab21/ha-samsungtv-smart/releases)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-blue.svg)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/release/eflye/ha-samsungtv-smart.svg)](https://github.com/eflye/ha-samsungtv-smart/releases)
+[![Validate with HACS](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/validate.yaml/badge.svg)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/validate.yaml)
+[![Validate with Hassfest](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/hassfest.yaml/badge.svg)](https://github.com/eflye/ha-samsungtv-smart/actions/workflows/hassfest.yaml)
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=eflye&repository=ha-samsungtv-smart&category=integration)
 
 📺 Home Assistant integration for Samsung Smart TVs with **enhanced Frame TV Art Mode support** and **OAuth2 authentication**.
 
@@ -45,7 +49,7 @@ Complete control over your Samsung Frame TV's Art Mode:
 
 - Samsung Smart TV (2016+ models)
 - Samsung Frame TV (for Art Mode features)
-- Home Assistant 2024.1.0 or newer
+- Home Assistant 2025.6.0 or newer
 - SmartThings account linked to your TV
 - **For OAuth2**: SmartThings Developer Account (free)
 
@@ -55,14 +59,22 @@ Complete control over your Samsung Frame TV's Art Mode:
 
 ### HACS (Recommended)
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=eflye&repository=ha-samsungtv-smart&category=integration)
+
 1. Open HACS in Home Assistant
 2. Go to **Integrations**
-3. Click the three dots menu → **Custom repositories**
-4. Add: `https://github.com/TheFab21/ha-samsungtv-smart`
-5. Category: **Integration**
-6. Click **Add**
-7. Search for "Samsung TV Smart" and install
-8. Restart Home Assistant
+3. Search for "Samsung TV Smart" and install
+4. Restart Home Assistant
+
+**Alternative (Custom Repository):**
+
+If the integration is not yet in the HACS default list:
+
+1. Open HACS → **Integrations** → three dots menu → **Custom repositories**
+2. Add: `https://github.com/eflye/ha-samsungtv-smart`
+3. Category: **Integration**
+4. Click **Add**, then search and install
+5. Restart Home Assistant
 
 ### Manual Installation
 
@@ -170,7 +182,7 @@ target:
   entity_id: media_player.samsung_frame
 data:
   content_id: "SAM-S1234567"
-  
+
 # Get available artworks
 service: samsungtv_smart.art_available
 target:
