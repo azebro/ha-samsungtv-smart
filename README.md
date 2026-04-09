@@ -10,7 +10,6 @@
 
 📺 Home Assistant integration for Samsung Smart TVs with **enhanced Frame TV Art Mode support**, **presence-aware automation entities**, and **OAuth2 authentication**.
 
-This is a fork of [ollo69/ha-samsungtv-smart](https://github.com/ollo69/ha-samsungtv-smart) with significant improvements for Samsung Frame TV users.
 
 ---
 
@@ -681,6 +680,7 @@ logger:
 
 ## 🙏 Credits
 
+- [ollo69/ha-samsungtv-smart](https://github.com/ollo69/ha-samsungtv-smart) base for this integration.
 - [ollo69](https://github.com/ollo69) - Original ha-samsungtv-smart integration
 - [NickWaterton](https://github.com/NickWaterton) - samsung-tv-ws-api reference
 - Samsung SmartThings - API documentation
