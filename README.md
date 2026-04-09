@@ -13,7 +13,7 @@
 
 ---
 
-## ✨ What's New in v7.0.0
+## ✨ What's New
 
 ### 🏠 Presence-Aware Art Mode (NEW)
 
